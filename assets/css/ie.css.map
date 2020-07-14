@@ -1,11 +1,1 @@
-{
-	"version": 3,
-	"file": "ie.css",
-	"sources": [
-		"../scss/ie.scss",
-		"../scss/_variables.scss",
-		"../scss/tools/_clearfix.scss"
-	],
-	"names": [],
-	"mappings": "AAWA,AAEC,UAFS,CAET,cAAc;AAFf,AAGC,UAHS,CAGT,kBAAkB,CAAiB;EAClC,KAAK,EAAE,IAAI;CACX;;AALF,AAOC,UAPS,CAOT,eAAe,AEbb,OAAS;AFMZ,AAQC,UARS,CAQT,YAAY,AEdV,OAAS,CAAC;EACL,OAAO,EAAE,EAAE;EACX,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;CACd"
-}
+{"version":3,"sources":["ie.scss","ie.css","tools/_clearfix.scss"],"names":[],"mappings":"AAWA,wDAIE,UCZF,CDQA,+DELQ,UAAW,CACX,aAAc,CACd,UDER","file":"ie.css","sourcesContent":["@import \"variables\";\n\n//\n// Tools\n//\n@import \"tools/clearfix\";\n\n\n//\n// Exported selectors\n//\n.#{$global-class-prefix}ui {\n\n\t.#{$global-class-prefix}column,\n\t.#{$global-class-prefix}grid__item {\n\t\tfloat: left;\n\t}\n\n\t.#{$global-class-prefix}section,\n\t.#{$global-class-prefix}grid {\n\t\t@include clearfix;\n\t}\n}",".tailor-ui .tailor-column,\n.tailor-ui .tailor-grid__item {\n  float: left;\n}\n\n.tailor-ui .tailor-section::after,\n.tailor-ui .tailor-grid::after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n","///\n/// Micro clearfix provides an easy way to contain floats without adding additional markup\n///\n@mixin clearfix {\n\n    &::after {\n        content: \"\";\n        display: table;\n        clear: both;\n    }\n}"]}

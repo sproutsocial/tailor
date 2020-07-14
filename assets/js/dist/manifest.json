@@ -1,0 +1,7 @@
+{
+  "admin.js": "admin.min.js",
+  "canvas.js": "canvas.min.js",
+  "frontend.js": "frontend.min.js",
+  "sidebar.js": "sidebar.min.js",
+  "tinymce.js": "tinymce.min.js"
+}
