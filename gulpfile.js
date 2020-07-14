@@ -19,18 +19,11 @@ gulp.task('styles:dev', () => (
         .pipe(
             styles(
                 {
-                    cssnano: {
-                        preset: ['default', {
-                            autoprefixer: false,
-                            reduceIdents: false,
-                            discardUnused: false,
-                            normalizeWhitespace: true,
-                            discardComments: false,
-                            discardEmpty: false,
-                            minifySelectors: false
-                        }]
-                    },
-                    autoprefixer: false
+                    cssnano: false,
+                    autoprefixer: false,
+                    sass: {
+                        outputStyle: 'expanded'
+                    }
                 }
             ))
         .pipe(gulp.dest('./assets/css'))
