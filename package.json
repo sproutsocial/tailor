@@ -2,7 +2,7 @@
   "name": "tailor",
   "version": "1.9.0",
   "scripts": {
-    "develop": "gulp build",
+    "develop": "gulp develop",
     "build": "gulp"
   },
   "author": "Andrew Worsfold (http://andrewworsfold.com)",
