@@ -61,7 +61,7 @@ gulp.task('modules', modulesProd({
 
 gulp.task('watch', () => {
     gulp.watch(['./assets/scss/**/*.scss'], gulp.series('styles:dev'));
-    gulp.watch(['./assets/js/**/*.js'], gulp.series('modules:dev'));
+    gulp.watch(['./assets/js/src/**/*.js'], gulp.series('modules:dev'));
 });
 gulp.task('build', gulp.parallel('styles:dev', 'modules:dev'));
 gulp.task('develop', gulp.series('build', 'watch'));
