@@ -69,6 +69,8 @@ if ( class_exists( 'Tailor_Control' ) && ! class_exists( 'Tailor_Select_Control'
 
             </select>
 
+            <%= edit( media ) %>
+
             <?php
         }
     }

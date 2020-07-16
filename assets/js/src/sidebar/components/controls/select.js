@@ -29,10 +29,12 @@ SelectControl = AbstractControl.extend( {
             return key === this.values[ media ] ? 'selected' : '';
         },
 
-        edit : (media, key) => {
-            if (key === this.values[ media ]) {
-                return `<a href="/edit.php?p=${key}">Edit</a>`;
+        edit : function( media ) {
+            if ( this.setting === ('data_component' || 'embedded_component') && this.values[ media ] ) {
+                return `<a href="/wp-admin/post.php?post=${this.values[ media ]}&action=edit" target="_blank">Edit</a>`;
             }
+
+            return null;
         }
     },
 
@@ -42,10 +44,8 @@ SelectControl = AbstractControl.extend( {
      * @since 1.7.2
      */
     onRender : function() {
-        console.log(this.getValues());
         _.each(this.getValues(), ( value, media ) => {
             var $field = this.ui.input.filter( '[name^="' + media + '"]' );
-
             _.each($field, () => $field.selectize());
         });
 
