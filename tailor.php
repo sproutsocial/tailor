@@ -4,7 +4,7 @@
  * Plugin Name: Tailor
  * Plugin URI: http://www.gettailor.com
  * Description: Build beautiful page layouts quickly and easily using your favourite theme.
- * Version: 1.8.1
+ * Version: 1.9.0
  * Author: The Tailor Team
  * Author URI:  http://www.gettailor.com
  * Text Domain: tailor
@@ -168,7 +168,7 @@ if ( ! class_exists( 'Tailor' ) ) {
          * @since 1.0.0
          */
         public function init() {
-	        
+
             load_plugin_textdomain( 'tailor', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	        add_filter( 'body_class', array( $this, 'body_class' ) );
@@ -465,7 +465,7 @@ if ( ! class_exists( 'Tailor' ) ) {
 		        // Enqueue frontend styles
 		        $file_name = 'frontend' . ( SCRIPT_DEBUG ? '.css' : '.min.css' );
 		        $stylesheet_path = @file_exists( "{$wp_upload_dir['basedir']}/tailor/css/{$file_name}" ) ? "{$wp_upload_dir['baseurl']}/tailor/css/{$file_name}" : $this->plugin_url() . "assets/css/{$file_name}";
-		        
+
 		        wp_enqueue_style(
 			        'tailor-styles',
 			        $stylesheet_path,
@@ -774,7 +774,7 @@ if ( ! class_exists( 'Tailor' ) ) {
 		    if ( ! is_user_logged_in() ) {
 			    auth_redirect();
 		    }
-		    
+
 		    // Check that the user can manage option and/or edit the post type
 		    $user = wp_get_current_user();
 		    $post_id = get_the_ID();
@@ -796,9 +796,9 @@ if ( ! class_exists( 'Tailor' ) ) {
 
 		    /**
 		     * Filter the result of the user role check.
-		     * 
+		     *
 		     * @since 1.3.1
-		     * 
+		     *
 		     * @param bool $allowable
 		     */
 		    return apply_filters( 'tailor_check_user', $allowable );

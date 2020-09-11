@@ -32,14 +32,33 @@ SelectMultiControl = AbstractControl.extend( {
     },
 
     /**
-     * Initializes the Select2 instance(s) and updates the media-query based control groups when the control is rendered.
+     * Initializes the selectize instance(s) and updates the media-query based control groups when the control is rendered.
      *
      * @since 1.7.2
      */
     onRender : function() {
         _.each( this.getValues(), function( value, media ) {
             var $field = this.ui.input.filter( '[name^="' + media + '"]' );
-            $field.select2()
+
+            _.each($field, function(fieldNode) {
+                if (fieldNode.id && window['ss_' + fieldNode.id]) {
+                    const valueArray = value.split(',');
+
+                    $field.selectize({
+                        options: window['ss_' + fieldNode.id].map(function(object) {
+                            return {
+                                value: object.id,
+                                text: object.text,
+                                selected: !!valueArray.includes(object.id)
+                            }
+                        }),
+                        items: valueArray,
+                        searchField: ['value', 'text']
+                    });
+                } else {
+                    $field.selectize();
+                }
+            });
         }, this );
 
         this.updateControlGroups();
@@ -63,14 +82,14 @@ SelectMultiControl = AbstractControl.extend( {
     },
 
     /**
-     * Destroys the Select2 instance(s).
+     * Destroys the selectize instance(s).
      *
      * @since 1.7.2
      */
     onDestroy : function() {
         _.each( this.getValues(), function( value, media ) {
             var $field = this.ui.input.filter( '[name^="' + media + '"]' );
-            $field.select2( 'destroy' );
+            $field.selectize( 'destroy' );
         }, this );
     }
 

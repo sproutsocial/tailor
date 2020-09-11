@@ -65,36 +65,6 @@ if ( class_exists( 'Tailor_Control' ) && ! class_exists( 'Tailor_Colorpicker_Con
                 false,
                 1
             );
-
-            $extension = SCRIPT_DEBUG ? '.js' : '.min.js';
-
-            wp_enqueue_script(
-                'wp-color-picker',
-                admin_url( '/js/color-picker' . $extension ),
-                array( 'iris' ),
-                false,
-                1
-            );
-
-            if (version_compare($GLOBALS['wp_version'], '4.9', '<')) {
-                wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', array(
-                    'clear'             =>  __( 'Clear' ),
-                    'defaultString'     =>  __( 'Default' ),
-                    'pick'              =>  __( 'Select Color' ),
-                    'current'           =>  __( 'Current Color' ),
-                ) );
-            } else {
-                wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', array(
-                    'clear'            => __( 'Clear' ),
-                    'clearAriaLabel'   => __( 'Clear color' ),
-                    'defaultString'    => __( 'Default' ),
-                    'defaultAriaLabel' => __( 'Select default color' ),
-                    'pick'             => __( 'Select Color' ),
-                    'defaultLabel'     => __( 'Color value' ),
-                ) );
-            }
-
-            wp_enqueue_style( 'wp-color-picker' );
         }
 
         /**
@@ -110,7 +80,7 @@ if ( class_exists( 'Tailor_Control' ) && ! class_exists( 'Tailor_Colorpicker_Con
          */
         protected function render_template() { ?>
 
-            <input type="text" name="<%= media %>" name="<%= media %>" value="<%= values[ media ] %>" data-alpha="<%= rgba %>" />
+            <input type="color" name="<%= media %>" name="<%= media %>" value="<%= values[ media ] %>" data-alpha="<%= rgba %>" />
 
             <?php
         }
