@@ -1,10 +1,10 @@
 ( function( window, $ ) {
-    
+
     'use strict';
-    
+
     var $doc = $( document );
     var $win = $( window );
-    
+
     // Include utilities
     require( './shared/utility/polyfills/classlist' );
     require( './shared/utility/polyfills/raf' );
@@ -19,7 +19,7 @@
             Draggable:          require( './shared/components/behaviors/draggable' )
         };
     };
-    
+
     // Create the app
     var App = require( './sidebar/app' );
     window.app = new App();
@@ -36,7 +36,7 @@
         Controls :  {},
         Items :     {},
         Helpers :   {
-            
+
             /**
              * Evaluates whether the given condition is true, given two values.
              *
@@ -45,7 +45,7 @@
              * @param actual
              * @param condition
              * @param required
-             * 
+             *
              * @returns {*}
              */
             checkCondition : function( condition, actual, required ) {
@@ -104,7 +104,6 @@
     Tailor.Controls.ButtonGroup =       require( './sidebar/components/controls/button-group' );
     Tailor.Controls.Checkbox =          require( './sidebar/components/controls/checkbox' );
     Tailor.Controls.Code =              require( './sidebar/components/controls/code' );
-    Tailor.Controls.Colorpicker =       require( './sidebar/components/controls/colorpicker' );
     Tailor.Controls.Editor =            require( './sidebar/components/controls/editor' );
     Tailor.Controls.Gallery =           require( './sidebar/components/controls/gallery' );
     Tailor.Controls.Icon =              require( './sidebar/components/controls/icon' );
@@ -185,7 +184,7 @@
 
     // Initialize preview
     require( './sidebar/preview' );
-    
+
     app.on( 'before:start', function( options ) {
 
         $doc.on( 'heartbeat-send', function( e, data ) {
@@ -224,7 +223,7 @@
     } );
 
     $( function() {
-        
+
         // Start the app
         app.start( {
             postId : window.post.id,
@@ -238,5 +237,5 @@
             controls : window._controls || []
         } );
     } );
-    
+
 } ( window, Backbone.$ ) );
