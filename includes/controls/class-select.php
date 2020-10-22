@@ -69,6 +69,14 @@ if ( class_exists( 'Tailor_Control' ) && ! class_exists( 'Tailor_Select_Control'
 
             </select>
 
+            <% if ( label.includes('Component') && values[ media ] ) { %>
+                <p>
+                    <a href="/wp-admin/post.php?post=<%= values[ media ] %>&action=edit" target="_blank">
+                        <?php _e( 'Edit', 'tailor' ); ?>
+                    </a>
+                </p>
+            <% } %>
+
             <?php
         }
     }
