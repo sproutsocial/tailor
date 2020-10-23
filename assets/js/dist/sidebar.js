@@ -3868,7 +3868,7 @@ var AbstractControl = require( './abstract-control' ),
     SelectMultiControl;
 
 SelectMultiControl = AbstractControl.extend( {
-    
+
     ui : {
         'input' : 'select',
         'mediaButton' : '.js-setting-group .button',
@@ -3912,7 +3912,15 @@ SelectMultiControl = AbstractControl.extend( {
                             }
                         }),
                         items: valueArray,
-                        searchField: ['value', 'text']
+                        searchField: ['value', 'text'],
+                        render: {
+                            item: function(item, escape) {
+                                return '<div title="' + escape(item.value) + '">' + escape(item.text) + '</div>';
+                            },
+                        },
+                        create: true,
+                        sortField: 'text',
+                        splitOn: /\s?[, ]\s?/
                     });
                 } else {
                     $field.selectize();
