@@ -39,9 +39,17 @@ SelectControl = AbstractControl.extend( {
             var $field = this.ui.input.filter('[name^="' + media + '"]');
 
             _.each($field, function () {
-                $field.selectize({
-                    sortField: 'text'
+                var $select = $field.selectize({
+                    sortField: 'text',
+                    placeholder: 'Please select an option'
                 });
+
+                // Clear out if theres no selected option
+
+                if ( ! value ) {
+                    var selectize  = $select[0].selectize;
+                    selectize.clear();
+                }
             });
         }, this);
 
