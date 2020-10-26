@@ -3868,7 +3868,7 @@ var AbstractControl = require( './abstract-control' ),
     SelectMultiControl;
 
 SelectMultiControl = AbstractControl.extend( {
-    
+
     ui : {
         'input' : 'select',
         'mediaButton' : '.js-setting-group .button',
@@ -3912,7 +3912,15 @@ SelectMultiControl = AbstractControl.extend( {
                             }
                         }),
                         items: valueArray,
-                        searchField: ['value', 'text']
+                        searchField: ['value', 'text'],
+                        render: {
+                            item: function(item, escape) {
+                                return '<div title="' + escape(item.value) + '">' + escape(item.text) + '</div>';
+                            },
+                        },
+                        create: true,
+                        sortField: 'text',
+                        splitOn: /\s?[, ]\s?/
                     });
                 } else {
                     $field.selectize();
@@ -3983,10 +3991,48 @@ SelectControl = AbstractControl.extend( {
     },
 
     templateHelpers : {
-        
         selected : function( media, key ) {
             return key === this.values[ media ] ? 'selected' : '';
         }
+    },
+
+    /**
+     * Initializes the selectize instance(s) and updates the media-query based control groups when the control is rendered.
+     *
+     * @since 1.7.2
+     */
+    onRender: function () {
+        _.each(this.getValues(), function (value, media) {
+            var $field = this.ui.input.filter('[name^="' + media + '"]');
+
+            _.each($field, function () {
+                var $select = $field.selectize({
+                    sortField: 'text',
+                    placeholder: 'Please select an option'
+                });
+
+                // Clear out if theres no selected option
+
+                if ( ! value ) {
+                    var selectize  = $select[0].selectize;
+                    selectize.clear();
+                }
+            });
+        }, this);
+
+        this.updateControlGroups();
+    },
+
+    /**
+     * Destroys the selectize instance(s).
+     *
+     * @since 1.7.2
+     */
+    onDestroy: function () {
+        _.each(this.getValues(), function (value, media) {
+            var $field = this.ui.input.filter('[name^="' + media + '"]');
+            $field.selectize('destroy');
+        }, this);
     }
 
 } );
