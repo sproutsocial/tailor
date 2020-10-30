@@ -1,2 +1,4 @@
 /plugin-update-checker
 /node_modules
+/assets/css
+/assets/js/dist/manifest.json
