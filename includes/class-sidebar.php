@@ -29,7 +29,7 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
             if ( ! tailor()->is_tailoring() ) {
                 return;
             }
-	        
+
 	        $this->add_actions();
         }
 
@@ -40,10 +40,10 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
          * @access protected
          */
         protected function add_actions() {
-	        
+
 	        /**
 	         * Fires before the sidebar is initialized.
-	         * 
+	         *
 	         * @since 1.3.4
 	         */
 	        do_action( 'tailor_sidebar_init' );
@@ -69,7 +69,7 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
 
             add_action( 'wp_ajax_tailor_refresh_nonces', array( $this, 'refresh_nonces' ) );
         }
-	    
+
 	    /**
 	     * Renders a blank page.
 	     *
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
 	        if ( is_customize_preview() ) {
 		        return $template;
 	        }
-	        
+
 	        if ( ! tailor()->check_user_role() || ! tailor()->check_post() ) {
 	            return $template;
 	        }
@@ -201,7 +201,7 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
 	        tailor_partial( 'underscore/sidebar', 'home' );
 	        tailor_partial( 'underscore/sidebar', 'home-empty' );
         }
-	    
+
         /**
          * Enqueues styles for the Tailor Sidebar.
          *
@@ -271,7 +271,9 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
 		        'type'              =>  $post_type,
 	        ) );
 
-	        wp_localize_script( $handle, 'ajaxurl', esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) ) );
+	        wp_localize_script( $handle, 'ajaxurl', array(
+				esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) )
+			) );
 
 	        wp_localize_script( $handle, '_urls', array(
 		        'ajax'              =>  esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) ),
