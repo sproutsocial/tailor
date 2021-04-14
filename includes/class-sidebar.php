@@ -272,8 +272,8 @@ if ( ! class_exists( 'Tailor_Sidebar' ) ) {
 	        ) );
 
 	        wp_localize_script( $handle, 'ajaxurl', array(
-				esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) )
-			) );
+		        esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) )
+	        ) );
 
 	        wp_localize_script( $handle, '_urls', array(
 		        'ajax'              =>  esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) ),
