@@ -56,20 +56,20 @@ if ( ! class_exists( 'Tailor_Canvas' ) ) {
             add_action( 'wp_head', array( $this, 'canvas_head' ) );
 	        add_filter( 'the_content', array( $this, 'canvas_content' ), -1 );
 	        add_action( 'wp_footer', array( $this, 'canvas_footer' ) );
-	        
+
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
             add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-	        
+
             add_action( 'tailor_canvas_footer', array( $this, 'print_templates' ) );
         }
 
 	    /**
 	     * Adds a custom body class to the preview window.
-	     * 
+	     *
 	     * @since 1.7.0
-	     * 
+	     *
 	     * @param $classes
-	     * 
+	     *
 	     * @return $classes
 	     */
 	    public function add_body_class( $classes ) {
@@ -148,7 +148,7 @@ if ( ! class_exists( 'Tailor_Canvas' ) ) {
          * @since 1.0.0
          */
         public function enqueue_styles() {
-	        
+
 	        if ( apply_filters( 'tailor_enable_canvas_styles', true ) && ! did_action( 'tailor_enqueue_canvas_styles' ) ) {
 		        $handle = 'tailor-canvas-styles';
 		        $min = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
@@ -199,7 +199,9 @@ if ( ! class_exists( 'Tailor_Canvas' ) ) {
 		        $allowed_urls[] = home_url( '/', 'https' );
 	        }
 
-	        wp_localize_script( $handle, 'ajaxurl', esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) ) );
+	        wp_localize_script( $handle, 'ajaxurl', array(
+	            esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) )
+	        ) );
 
 	        wp_localize_script( $handle, '_urls', array(
 		        'ajax'              =>  esc_url_raw( admin_url( 'admin-ajax.php', 'relative' ) ),
@@ -278,7 +280,7 @@ if ( ! class_exists( 'Tailor_Canvas' ) ) {
 	     */
 	    function print_templates() {
 		    tailor_partial( 'underscore/canvas', 'tools' );
-		    
+
 		    tailor_partial( 'underscore/element', 'empty' );
 	    }
     }
